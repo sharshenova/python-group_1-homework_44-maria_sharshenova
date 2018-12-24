@@ -14,3 +14,15 @@ class FoodDetailView(DetailView):
     model = Food
     template_name = 'food_detail.html'
 
+class FoodCreateView(CreateView):
+    model = Food
+    template_name = 'food_create.html'
+    form_class = FoodForm
+    success_url = reverse_lazy('food_list')
+
+
+class FoodUpdateView(UpdateView):
+    model = Food
+    template_name = 'food_update.html'
+    form_class = FoodForm
+    success_url = reverse_lazy('food_list')

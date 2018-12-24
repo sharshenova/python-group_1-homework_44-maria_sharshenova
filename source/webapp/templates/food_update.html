@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Изменить блюдо{% endblock %}
+
+{% block content %}
+    <h1>Изменить блюдо</h1>
+    <form action="{% url 'food_update' food.pk %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+    </form>
+{% endblock %}

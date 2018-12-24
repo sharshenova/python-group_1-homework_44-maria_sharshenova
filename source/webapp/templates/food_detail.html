@@ -4,8 +4,9 @@
 {% block content %}
     <h2>{{ food.name }}</h2>
     <p>{{ food.description }}</p>
-    <img src="{{ food.photo.get_url }}" alt="food">
+    <img class="food_photo" src="{{ food.photo.url }}" alt="food photo">
     <p>Цена: {{ food.price }}</p>
+    <a href="{% url "food_update" food.pk %}">Изменить блюдо</a>
     <hr>
 
 {% endblock %}

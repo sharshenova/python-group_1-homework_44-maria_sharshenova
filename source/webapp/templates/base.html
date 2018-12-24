@@ -21,8 +21,14 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a href="#" class="nav-link">Lorem</a>
+                <a href="{% url 'food_list' %}" class="nav-link">На главную</a>
             </li>
+            <li>
+                <a href="{% url 'food_create' %}" class="nav-link">Создать блюдо</a>
+            </li>
+{#            <li>#}
+{#                <a href="{% url 'article_create' %}" class="nav-link">Создать статью</a>#}
+{#            </li>#}
             {% block menu %}{% endblock %}
         </ul>
     </div>

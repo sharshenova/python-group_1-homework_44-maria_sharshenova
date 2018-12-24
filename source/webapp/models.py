@@ -7,11 +7,15 @@ class Employee(models.Model):
     phone = models.CharField(max_length=50, verbose_name='Телефон')
 
 
+
 class Food(models.Model):
     name = models.CharField(max_length=50, verbose_name='Название')
     description = models.TextField(max_length=1000, null=True, blank=True, verbose_name='Описание')
     photo = models.ImageField(verbose_name='Фотография')
     price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name='Цена')
+
+    def __str__(self):
+        return self.name
 
 
 class Order(models.Model):
@@ -39,8 +43,14 @@ class Order(models.Model):
                                 on_delete=models.PROTECT)
 
 
+    def __str__(self):
+        return self.delivery_address
+
+
 
 class OrderFoods(models.Model):
     order = models.ForeignKey(Order, related_name='foods', verbose_name='Заказ', on_delete=models.PROTECT)
     food = models.ForeignKey(Food, related_name='+', verbose_name='Блюдо', on_delete=models.PROTECT)
     amount = models.IntegerField(verbose_name='Количество')
+
+

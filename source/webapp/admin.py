@@ -26,3 +26,4 @@ admin.site.unregister(User)
 admin.site.register(User, EmployeeAdmin)
 admin.site.register(Food)
 admin.site.register(Order, OrderAdmin)
+

@@ -7,3 +7,13 @@ class FoodForm(forms.ModelForm):
         model = Food
         fields = ['name', 'description', 'photo', 'price']
 
+class OrderForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        exclude = ['status']
+
+
+class OrderFoodForm(forms.ModelForm):
+    class Meta:
+        model = OrderFoods
+        exclude = ['order']

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Заказ{% endblock %}
+
+{% block content %}
+        <h2>Заказ {{ order.id }}</h2>
+        <p>Имя клиента: {{ order.contact_name }}</p>
+        <p>Телефон: {{ order.contact_phone }}</p>
+        <p>Адрес доставки: {{ order.delivery_address }}</p>
+        <p>Статус доставки: {{ order.get_status_display }}</p>
+        <p>Оператор: {{ order.operator }}</p>
+        <p>Курьер: {{ order.courier }}</p>
+        <hr>
+
+        {% for food in order.foods.all %}
+            <p>{{ food.food.name }}: {{ food.amount }}</p>
+        {% endfor %}
+
+    <a href="{% url "orderFood_create" order.pk %}">Добавить блюдо</a>
+{#    <a href="{% url "order_update" order.pk %}">Изменить заказ</a>#}
+{#    <a href="{% url "food_delete" food.pk %}">Удалить блюдо</a>#}
+    <hr>
+
+{% endblock %}

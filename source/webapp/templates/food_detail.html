@@ -7,6 +7,7 @@
     <img class="food_photo" src="{{ food.photo.url }}" alt="food photo">
     <p>Цена: {{ food.price }}</p>
     <a href="{% url "food_update" food.pk %}">Изменить блюдо</a>
+    <a href="{% url "food_delete" food.pk %}">Удалить блюдо</a>
     <hr>
 
 {% endblock %}

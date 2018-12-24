@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from webapp.models import Food, Employee, Order, OrderFoods
-from django.views.generic import ListView, DetailView, FormView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, FormView, CreateView, UpdateView, DeleteView
 from webapp.forms import FoodForm
 from django.urls import reverse, reverse_lazy
 
@@ -25,4 +25,9 @@ class FoodUpdateView(UpdateView):
     model = Food
     template_name = 'food_update.html'
     form_class = FoodForm
+    success_url = reverse_lazy('food_list')
+
+class FoodDeleteView(DeleteView):
+    model = Food
+    template_name = 'food_delete.html'
     success_url = reverse_lazy('food_list')

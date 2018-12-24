@@ -4,7 +4,8 @@
 
 {% block content %}
     {% for food in food_list %}
-    <img src="{{ food.photo.get_url }}" alt="food">
+        <h2><a href="{% url 'food_detail' food.pk %}">{{ food.name }}</a></h2>
+        <hr>
     {% endfor %}
 {% endblock %}
 

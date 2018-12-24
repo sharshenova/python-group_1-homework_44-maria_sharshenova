@@ -18,12 +18,13 @@ from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
 
-from webapp.views import FoodListView
+from webapp.views import FoodListView, FoodDetailView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', FoodListView.as_view(), name='food_list')
+    path('', FoodListView.as_view(), name='food_list'),
+    path('foods/<int:pk>', FoodDetailView.as_view(), name='food_detail'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

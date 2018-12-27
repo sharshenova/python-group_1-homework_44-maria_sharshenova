@@ -18,7 +18,10 @@ from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
 
-from webapp.views import FoodListView, FoodDetailView, FoodCreateView, FoodUpdateView, FoodDeleteView, OrderListView, OrderDetailView, OrderCreateView, OrderFoodCreateView
+
+from webapp.views import FoodListView, FoodDetailView, FoodCreateView, FoodUpdateView, \
+    FoodDeleteView, OrderListView, OrderDetailView, OrderCreateView, OrderFoodCreateView, \
+    OrderUpdateView, OrderFoodUpdateView, OrderCancelView, OrderFoodDeleteView, StatusUpdateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,6 +34,12 @@ urlpatterns = [
     path('orders/<int:pk>', OrderDetailView.as_view(), name='order_detail'),
     path('orders/create', OrderCreateView.as_view(), name='order_create'),
     path('orders/<int:pk>/order_food/create', OrderFoodCreateView.as_view(), name='orderFood_create'),
+    path('orders/<int:pk>/update', OrderUpdateView.as_view(), name='order_update'),
+    path('orders/<int:pk>/cancel', OrderCancelView.as_view(), name='order_cancel'),
+    path('order_food/<int:pk>/update', OrderFoodUpdateView.as_view(), name='orderFood_update'),
+    path('order_food/<int:pk>/delete', OrderFoodDeleteView.as_view(), name='orderFood_delete'),
+    path('orders/<int:pk>/status_update', StatusUpdateView.as_view(), name='status_update')
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

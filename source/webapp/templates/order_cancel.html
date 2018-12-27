@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}Отменить заказ{% endblock %}
+
+{% block content %}
+    <h1>Отменить заказ</h1>
+    <h5>Вы уверены, что хотите отменить заказ {{ order.id }}</h5>
+    <a href="{% url 'order_cancel' order.pk %}">Да</a><br>
+{% endblock %}

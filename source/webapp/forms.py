@@ -17,3 +17,15 @@ class OrderFoodForm(forms.ModelForm):
     class Meta:
         model = OrderFoods
         exclude = ['order']
+
+
+class StatusUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ['status']
+
+
+# class CancelForm(forms.ModelForm):
+#     class Meta:
+#         model = Order
+#         fields = ['status']

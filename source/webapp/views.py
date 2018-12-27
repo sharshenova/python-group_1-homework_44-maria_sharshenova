@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from webapp.models import Food, Order, OrderFoods
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from webapp.forms import FoodForm, OrderForm, OrderFoodForm, StatusUpdateForm
+from webapp.forms import FoodForm, OrderUpdateForm, OrderCreateForm, OrderFoodForm, StatusUpdateForm
 from django.urls import reverse, reverse_lazy
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
@@ -63,12 +63,12 @@ class OrderDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
 class OrderCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Order
     template_name = 'order_create.html'
-    form_class = OrderForm
+    form_class = OrderCreateForm
     permission_required = 'webapp.add_order'
-
 
     def form_valid(self, form):
         form.instance.status = 'new'
+        form.instance.operator = self.request.user
         return super().form_valid(form)
 
     def get_success_url(self):
@@ -98,7 +98,7 @@ class OrderFoodCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateVie
 class OrderUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Order
     template_name = 'order_update.html'
-    form_class = OrderForm
+    form_class = OrderUpdateForm
     permission_required = 'webapp.change_order'
 
     def get_success_url(self):
@@ -147,17 +147,17 @@ class OrderFoodDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteVie
 class StatusUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Order
     form_class = StatusUpdateForm
-    # permission_required = 'can_take_and_deliver_orders'
+    permission_required = 'webapp.can_take_and_deliver_orders'
 
     def get(self, request, pk):
         order = get_object_or_404(Order, pk=pk)
         if order.status == 'preparing':
             order.status = 'on_way'
-        elif order.status == 'on_way':
+            order.courier = self.request.user
+        elif order.status == 'on_way' and order.courier == self.request.user:
             order.status = 'delivered'
         order.save()
         return redirect('webapp:order_list')
-
 
 
 

@@ -1,0 +1,1133 @@
+[
+{
+  "model": "webapp.food",
+  "pk": 1,
+  "fields": {
+    "name": "\u041f\u0438\u0446\u0446\u0430 \u041c\u0430\u0440\u0433\u0430\u0440\u0438\u0442\u0430",
+    "description": "\u041f\u0438\u0446\u0446\u0430 \u0441 \u0441\u044b\u0440\u043e\u043c \u043c\u043e\u0446\u0430\u0440\u0435\u043b\u043b\u0430 \u0438 \u043f\u043e\u043c\u0438\u0434\u043e\u0440\u0430\u043c\u0438",
+    "photo": "margarita_aZ2OuzP.jpg",
+    "price": "250.00"
+  }
+},
+{
+  "model": "webapp.food",
+  "pk": 2,
+  "fields": {
+    "name": "\u041f\u0438\u0446\u0446\u0430 4 \u0441\u044b\u0440\u0430",
+    "description": "\u041f\u0438\u0446\u0446\u0430 \u0441 \u0441\u044b\u0440\u043e\u043c \u043c\u043e\u0446\u0430\u0440\u0435\u043b\u043b\u0430, \u043f\u0430\u0440\u043c\u0435\u0437\u0430\u043d, \u0434\u043e\u0440 \u0431\u043b\u044e, \u044d\u043c\u043c\u0435\u043d\u0442\u0430\u043b\u044c.",
+    "photo": "4cheese_m3ddqcE.jpg",
+    "price": "300.00"
+  }
+},
+{
+  "model": "webapp.food",
+  "pk": 3,
+  "fields": {
+    "name": "\u041f\u0438\u0446\u0446\u0430 \u041c\u0435\u043a\u0441\u0438\u043a\u0430\u043d\u0441\u043a\u0430\u044f",
+    "description": "\u041e\u0441\u0442\u0440\u0430\u044f \u043f\u0438\u0446\u0446\u0430 \u0441 \u043f\u0435\u0440\u0447\u0438\u043a\u0430\u043c\u0438 \u0425\u0430\u043b\u0430\u043f\u0435\u043d\u044c\u043e*",
+    "photo": "meksikano_kfqaNYu.jpg",
+    "price": "350.00"
+  }
+},
+{
+  "model": "webapp.food",
+  "pk": 4,
+  "fields": {
+    "name": "\u041f\u0438\u0446\u0446\u0430 \u0414\u043e\u043c\u0430\u0448\u043d\u044f\u044f",
+    "description": "\u041e\u0447\u0435\u043d\u044c \u0441\u044b\u0442\u043d\u0430\u044f \u043f\u0438\u0446\u0446\u0430 \u0441 \u043a\u043e\u043b\u0431\u0430\u0441\u043e\u0439 \u041f\u0435\u043f\u043f\u0435\u0440\u043e\u043d\u0438",
+    "photo": "homepizza.jpg",
+    "price": "350.00"
+  }
+},
+{
+  "model": "webapp.food",
+  "pk": 6,
+  "fields": {
+    "name": "\u041f\u0430\u0441\u0442\u0430 \u041a\u0430\u0440\u0431\u043e\u043d\u0430\u0440\u0430",
+    "description": "\u0421\u043b\u0438\u0432\u043e\u0447\u043d\u0430\u044f \u043f\u0430\u0441\u0442\u0430 \u0441 \u0431\u0435\u043a\u043e\u043d\u043e\u043c",
+    "photo": "karbonara_5ojQQnU.jpg",
+    "price": "350.00"
+  }
+},
+{
+  "model": "webapp.food",
+  "pk": 7,
+  "fields": {
+    "name": "\u041f\u0430\u0441\u0442\u0430 \u0411\u043e\u043b\u043e\u043d\u044c\u0435\u0437\u0435",
+    "description": "\u041f\u0430\u0441\u0442\u0430 \u0441 \u0444\u0430\u0440\u0448\u0435\u043c \u0432 \u0442\u043e\u043c\u0430\u0442\u043d\u043e\u043c \u0441\u043e\u0443\u0441\u0435",
+    "photo": "boloneze_bJ3Dst0.jpg",
+    "price": "350.00"
+  }
+},
+{
+  "model": "webapp.food",
+  "pk": 8,
+  "fields": {
+    "name": "\u041f\u0430\u0441\u0442\u0430 \u0441 \u0441\u0435\u043c\u0433\u043e\u0439",
+    "description": "\u041f\u0430\u0441\u0442\u0430 \u0441 \u0441\u0435\u043c\u0433\u043e\u0439 \u0432 \u0441\u043b\u0438\u0432\u043e\u0447\u043d\u043e-\u0447\u0435\u0441\u043d\u043e\u0447\u043d\u043e\u043c \u0441\u043e\u0443\u0441\u0435",
+    "photo": "pasta_semga_1h5h6EB.jpg",
+    "price": "370.00"
+  }
+},
+{
+  "model": "webapp.orderfoods",
+  "pk": 1,
+  "fields": {
+    "order": 1,
+    "food": 1,
+    "amount": 1
+  }
+},
+{
+  "model": "webapp.orderfoods",
+  "pk": 2,
+  "fields": {
+    "order": 1,
+    "food": 4,
+    "amount": 2
+  }
+},
+{
+  "model": "webapp.orderfoods",
+  "pk": 3,
+  "fields": {
+    "order": 3,
+    "food": 2,
+    "amount": 4
+  }
+},
+{
+  "model": "webapp.orderfoods",
+  "pk": 4,
+  "fields": {
+    "order": 4,
+    "food": 1,
+    "amount": 2
+  }
+},
+{
+  "model": "webapp.orderfoods",
+  "pk": 8,
+  "fields": {
+    "order": 4,
+    "food": 4,
+    "amount": 1
+  }
+},
+{
+  "model": "webapp.orderfoods",
+  "pk": 9,
+  "fields": {
+    "order": 4,
+    "food": 2,
+    "amount": 1
+  }
+},
+{
+  "model": "webapp.orderfoods",
+  "pk": 10,
+  "fields": {
+    "order": 10,
+    "food": 2,
+    "amount": 1
+  }
+},
+{
+  "model": "webapp.orderfoods",
+  "pk": 12,
+  "fields": {
+    "order": 11,
+    "food": 4,
+    "amount": 1
+  }
+},
+{
+  "model": "webapp.orderfoods",
+  "pk": 17,
+  "fields": {
+    "order": 11,
+    "food": 6,
+    "amount": 2
+  }
+},
+{
+  "model": "webapp.orderfoods",
+  "pk": 18,
+  "fields": {
+    "order": 2,
+    "food": 2,
+    "amount": 2
+  }
+},
+{
+  "model": "webapp.orderfoods",
+  "pk": 19,
+  "fields": {
+    "order": 2,
+    "food": 6,
+    "amount": 1
+  }
+},
+{
+  "model": "webapp.orderfoods",
+  "pk": 20,
+  "fields": {
+    "order": 2,
+    "food": 3,
+    "amount": 3
+  }
+},
+{
+  "model": "webapp.orderfoods",
+  "pk": 21,
+  "fields": {
+    "order": 14,
+    "food": 3,
+    "amount": 2
+  }
+},
+{
+  "model": "webapp.orderfoods",
+  "pk": 22,
+  "fields": {
+    "order": 15,
+    "food": 3,
+    "amount": 3
+  }
+},
+{
+  "model": "webapp.orderfoods",
+  "pk": 23,
+  "fields": {
+    "order": 16,
+    "food": 2,
+    "amount": 3
+  }
+},
+{
+  "model": "webapp.orderfoods",
+  "pk": 24,
+  "fields": {
+    "order": 17,
+    "food": 4,
+    "amount": 3
+  }
+},
+{
+  "model": "webapp.orderfoods",
+  "pk": 25,
+  "fields": {
+    "order": 18,
+    "food": 3,
+    "amount": 2
+  }
+},
+{
+  "model": "webapp.orderfoods",
+  "pk": 26,
+  "fields": {
+    "order": 19,
+    "food": 7,
+    "amount": 2
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 1,
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 2,
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 3,
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 4,
+  "fields": {
+    "name": "Can view log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "view_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 5,
+  "fields": {
+    "name": "Can add permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 6,
+  "fields": {
+    "name": "Can change permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 7,
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 8,
+  "fields": {
+    "name": "Can view permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "view_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 9,
+  "fields": {
+    "name": "Can add group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 10,
+  "fields": {
+    "name": "Can change group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 11,
+  "fields": {
+    "name": "Can delete group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 12,
+  "fields": {
+    "name": "Can view group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "view_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 13,
+  "fields": {
+    "name": "Can add user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "add_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 14,
+  "fields": {
+    "name": "Can change user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "change_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 15,
+  "fields": {
+    "name": "Can delete user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "delete_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 16,
+  "fields": {
+    "name": "Can view user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "view_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 17,
+  "fields": {
+    "name": "Can add content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 18,
+  "fields": {
+    "name": "Can change content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 19,
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 20,
+  "fields": {
+    "name": "Can view content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "view_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 21,
+  "fields": {
+    "name": "Can add session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 22,
+  "fields": {
+    "name": "Can change session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 23,
+  "fields": {
+    "name": "Can delete session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 24,
+  "fields": {
+    "name": "Can view session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "view_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 25,
+  "fields": {
+    "name": "Can add employee",
+    "content_type": [
+      "webapp",
+      "employee"
+    ],
+    "codename": "add_employee"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 26,
+  "fields": {
+    "name": "Can change employee",
+    "content_type": [
+      "webapp",
+      "employee"
+    ],
+    "codename": "change_employee"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 27,
+  "fields": {
+    "name": "Can delete employee",
+    "content_type": [
+      "webapp",
+      "employee"
+    ],
+    "codename": "delete_employee"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 28,
+  "fields": {
+    "name": "Can view employee",
+    "content_type": [
+      "webapp",
+      "employee"
+    ],
+    "codename": "view_employee"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 29,
+  "fields": {
+    "name": "Can add food",
+    "content_type": [
+      "webapp",
+      "food"
+    ],
+    "codename": "add_food"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 30,
+  "fields": {
+    "name": "Can change food",
+    "content_type": [
+      "webapp",
+      "food"
+    ],
+    "codename": "change_food"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 31,
+  "fields": {
+    "name": "Can delete food",
+    "content_type": [
+      "webapp",
+      "food"
+    ],
+    "codename": "delete_food"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 32,
+  "fields": {
+    "name": "Can view food",
+    "content_type": [
+      "webapp",
+      "food"
+    ],
+    "codename": "view_food"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 33,
+  "fields": {
+    "name": "Can add order foods",
+    "content_type": [
+      "webapp",
+      "orderfoods"
+    ],
+    "codename": "add_orderfoods"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 34,
+  "fields": {
+    "name": "Can change order foods",
+    "content_type": [
+      "webapp",
+      "orderfoods"
+    ],
+    "codename": "change_orderfoods"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 35,
+  "fields": {
+    "name": "Can delete order foods",
+    "content_type": [
+      "webapp",
+      "orderfoods"
+    ],
+    "codename": "delete_orderfoods"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 36,
+  "fields": {
+    "name": "Can view order foods",
+    "content_type": [
+      "webapp",
+      "orderfoods"
+    ],
+    "codename": "view_orderfoods"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 37,
+  "fields": {
+    "name": "Can add order",
+    "content_type": [
+      "webapp",
+      "order"
+    ],
+    "codename": "add_order"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 38,
+  "fields": {
+    "name": "Can change order",
+    "content_type": [
+      "webapp",
+      "order"
+    ],
+    "codename": "change_order"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 39,
+  "fields": {
+    "name": "Can delete order",
+    "content_type": [
+      "webapp",
+      "order"
+    ],
+    "codename": "delete_order"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 40,
+  "fields": {
+    "name": "Can view order",
+    "content_type": [
+      "webapp",
+      "order"
+    ],
+    "codename": "view_order"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 41,
+  "fields": {
+    "name": "\u041c\u043e\u0436\u0435\u0442 \u0431\u0440\u0430\u0442\u044c \u0438 \u0434\u043e\u0441\u0442\u0430\u0432\u043b\u044f\u0442\u044c \u0437\u0430\u043a\u0430\u0437\u044b",
+    "content_type": [
+      "webapp",
+      "order"
+    ],
+    "codename": "can_take_and_deliver_orders"
+  }
+},
+{
+  "model": "auth.group",
+  "pk": 1,
+  "fields": {
+    "name": "\u041a\u0443\u0440\u044c\u0435\u0440\u044b",
+    "permissions": [
+      [
+        "view_food",
+        "webapp",
+        "food"
+      ],
+      [
+        "can_take_and_deliver_orders",
+        "webapp",
+        "order"
+      ],
+      [
+        "view_order",
+        "webapp",
+        "order"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "pk": 2,
+  "fields": {
+    "name": "\u041e\u043f\u0435\u0440\u0430\u0442\u043e\u0440\u044b",
+    "permissions": [
+      [
+        "add_food",
+        "webapp",
+        "food"
+      ],
+      [
+        "change_food",
+        "webapp",
+        "food"
+      ],
+      [
+        "delete_food",
+        "webapp",
+        "food"
+      ],
+      [
+        "view_food",
+        "webapp",
+        "food"
+      ],
+      [
+        "add_order",
+        "webapp",
+        "order"
+      ],
+      [
+        "change_order",
+        "webapp",
+        "order"
+      ],
+      [
+        "delete_order",
+        "webapp",
+        "order"
+      ],
+      [
+        "view_order",
+        "webapp",
+        "order"
+      ],
+      [
+        "add_orderfoods",
+        "webapp",
+        "orderfoods"
+      ],
+      [
+        "change_orderfoods",
+        "webapp",
+        "orderfoods"
+      ],
+      [
+        "delete_orderfoods",
+        "webapp",
+        "orderfoods"
+      ],
+      [
+        "view_orderfoods",
+        "webapp",
+        "orderfoods"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$120000$fYhW5hBREEWr$q5ULM676eeV9k1M6LKogmz/0dls3L1gd3WHqUeqBepY=",
+    "last_login": "2018-12-27T12:01:51.325Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "\u0410\u0434\u043c\u0438\u043d",
+    "last_name": "\u0410\u0434\u043c\u0438\u043d\u044b\u0447",
+    "email": "admin@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2018-12-20T13:27:11Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$120000$X7JF3qwQvFI7$e4TNi+I7A1X7LIhS9WKPt8apgela4q/1S2ydN//7B1A=",
+    "last_login": "2018-12-27T12:03:35.160Z",
+    "is_superuser": false,
+    "username": "courier",
+    "first_name": "\u0412\u0430\u0441\u0438\u043b\u0438\u0439",
+    "last_name": "\u0412\u0430\u0441\u0441\u0435\u0440\u043c\u0430\u043d",
+    "email": "vasyavaser@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2018-12-27T07:01:02Z",
+    "groups": [
+      [
+        "\u041a\u0443\u0440\u044c\u0435\u0440\u044b"
+      ]
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$120000$jeEEzYF06ok1$GyRMa3GSONuv/XwnYVT/O9XSPIvf2jG285QaOMXs8hk=",
+    "last_login": "2018-12-27T12:03:22.593Z",
+    "is_superuser": false,
+    "username": "operator",
+    "first_name": "\u0410\u043d\u043d\u0430",
+    "last_name": "\u0412\u0430\u0441\u0435\u0447\u043a\u0438\u043d\u0430",
+    "email": "annavas@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2018-12-27T07:05:41Z",
+    "groups": [
+      [
+        "\u041e\u043f\u0435\u0440\u0430\u0442\u043e\u0440\u044b"
+      ]
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "webapp.order",
+  "pk": 1,
+  "fields": {
+    "contact_phone": "0770496789",
+    "contact_name": "\u0418\u0432\u0430\u043d \u0418\u0432\u0430\u043d\u043e\u0432",
+    "delivery_address": "\u041c\u0430\u043d\u0430\u0441\u0430, 25-12",
+    "status": "canceled",
+    "operator": [
+      "admin"
+    ],
+    "courier": [
+      "admin"
+    ]
+  }
+},
+{
+  "model": "webapp.order",
+  "pk": 2,
+  "fields": {
+    "contact_phone": "0559454342",
+    "contact_name": "\u041a\u0430\u0442\u044f \u0421\u0438\u0434\u043e\u0440\u043e\u0432\u0430",
+    "delivery_address": "3-47-25",
+    "status": "on_way",
+    "operator": [
+      "admin"
+    ],
+    "courier": [
+      "admin"
+    ]
+  }
+},
+{
+  "model": "webapp.order",
+  "pk": 3,
+  "fields": {
+    "contact_phone": "0557674325",
+    "contact_name": "\u0410\u043d\u043d\u0430 \u041f\u0435\u0442\u0440\u043e\u0432\u0430",
+    "delivery_address": "\u0413\u043e\u0440\u044c\u043a\u043e\u0433\u043e, 25",
+    "status": "delivered",
+    "operator": [
+      "admin"
+    ],
+    "courier": [
+      "admin"
+    ]
+  }
+},
+{
+  "model": "webapp.order",
+  "pk": 4,
+  "fields": {
+    "contact_phone": "0557894534",
+    "contact_name": "\u0414\u0430\u0448\u0430 \u0421\u0435\u043c\u0435\u043d\u043e\u0432\u0430",
+    "delivery_address": "8-47-32",
+    "status": "delivered",
+    "operator": [
+      "admin"
+    ],
+    "courier": [
+      "admin"
+    ]
+  }
+},
+{
+  "model": "webapp.order",
+  "pk": 10,
+  "fields": {
+    "contact_phone": "0770496734",
+    "contact_name": "\u0412\u0430\u0441\u044f \u041f\u0443\u043f\u043a\u0438\u043d",
+    "delivery_address": "3-4-5",
+    "status": "on_way",
+    "operator": [
+      "admin"
+    ],
+    "courier": [
+      "admin"
+    ]
+  }
+},
+{
+  "model": "webapp.order",
+  "pk": 11,
+  "fields": {
+    "contact_phone": "0557894535",
+    "contact_name": "\u0418\u0432\u0430\u043d \u0412\u0430\u0441\u0438\u043b\u044c\u0435\u0432",
+    "delivery_address": "7-23-59",
+    "status": "on_way",
+    "operator": [
+      "admin"
+    ],
+    "courier": [
+      "admin"
+    ]
+  }
+},
+{
+  "model": "webapp.order",
+  "pk": 12,
+  "fields": {
+    "contact_phone": "0770496781",
+    "contact_name": "Maria",
+    "delivery_address": "Abdrahmanova, 1",
+    "status": "canceled",
+    "operator": [
+      "admin"
+    ],
+    "courier": [
+      "admin"
+    ]
+  }
+},
+{
+  "model": "webapp.order",
+  "pk": 13,
+  "fields": {
+    "contact_phone": "0557674323",
+    "contact_name": "\u0410\u043d\u0442\u043e\u043d \u041f\u0435\u0442\u0440\u043e\u0432",
+    "delivery_address": "\u0413\u043e\u0433\u043e\u043b\u044f, 25-7",
+    "status": "canceled",
+    "operator": [
+      "operator"
+    ],
+    "courier": [
+      "courier"
+    ]
+  }
+},
+{
+  "model": "webapp.order",
+  "pk": 14,
+  "fields": {
+    "contact_phone": "0557645325",
+    "contact_name": "\u0416\u0435\u043d\u044f \u041a\u0443\u043b\u0438\u043a\u043e\u0432",
+    "delivery_address": "Abdrahmanova, 123",
+    "status": "on_way",
+    "operator": [
+      "admin"
+    ],
+    "courier": [
+      "admin"
+    ]
+  }
+},
+{
+  "model": "webapp.order",
+  "pk": 15,
+  "fields": {
+    "contact_phone": "0770496789",
+    "contact_name": "Maria",
+    "delivery_address": "Abdrahmanova, 8",
+    "status": "on_way",
+    "operator": [
+      "operator"
+    ],
+    "courier": [
+      "admin"
+    ]
+  }
+},
+{
+  "model": "webapp.order",
+  "pk": 16,
+  "fields": {
+    "contact_phone": "07704963456",
+    "contact_name": "\u041d\u0438\u043a\u043e\u043b\u0430\u0439 \u0412\u0430\u0441\u0438\u043b\u044c\u0435\u0432",
+    "delivery_address": "\u041f\u0443\u0448\u043a\u0438\u043d\u0430, 241",
+    "status": "on_way",
+    "operator": [
+      "admin"
+    ],
+    "courier": [
+      "courier"
+    ]
+  }
+},
+{
+  "model": "webapp.order",
+  "pk": 17,
+  "fields": {
+    "contact_phone": "0559454342",
+    "contact_name": "\u041b\u0435\u0445\u0430",
+    "delivery_address": "4-34-45",
+    "status": "new",
+    "operator": [
+      "operator"
+    ],
+    "courier": null
+  }
+},
+{
+  "model": "webapp.order",
+  "pk": 18,
+  "fields": {
+    "contact_phone": "0557894534",
+    "contact_name": "Maria",
+    "delivery_address": "Abdrahmanova, 24",
+    "status": "delivered",
+    "operator": [
+      "operator"
+    ],
+    "courier": [
+      "courier"
+    ]
+  }
+},
+{
+  "model": "webapp.order",
+  "pk": 19,
+  "fields": {
+    "contact_phone": "0559454342",
+    "contact_name": "Ivan",
+    "delivery_address": "Politekhnicheskaya, 23",
+    "status": "new",
+    "operator": [
+      "operator"
+    ],
+    "courier": [
+      "admin"
+    ]
+  }
+},
+{
+  "model": "webapp.employee",
+  "pk": 1,
+  "fields": {
+    "user": [
+      "admin"
+    ],
+    "phone": "0770695040"
+  }
+},
+{
+  "model": "webapp.employee",
+  "pk": 2,
+  "fields": {
+    "user": [
+      "courier"
+    ],
+    "phone": "0770695020"
+  }
+},
+{
+  "model": "webapp.employee",
+  "pk": 3,
+  "fields": {
+    "user": [
+      "operator"
+    ],
+    "phone": "0770654343"
+  }
+}
+]

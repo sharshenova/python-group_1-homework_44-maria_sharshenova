@@ -821,7 +821,7 @@
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$120000$fYhW5hBREEWr$q5ULM676eeV9k1M6LKogmz/0dls3L1gd3WHqUeqBepY=",
-    "last_login": "2018-12-27T12:01:51.325Z",
+    "last_login": "2018-12-27T13:12:07.237Z",
     "is_superuser": true,
     "username": "admin",
     "first_name": "\u0410\u0434\u043c\u0438\u043d",
@@ -839,7 +839,7 @@
   "pk": 2,
   "fields": {
     "password": "pbkdf2_sha256$120000$X7JF3qwQvFI7$e4TNi+I7A1X7LIhS9WKPt8apgela4q/1S2ydN//7B1A=",
-    "last_login": "2018-12-27T12:03:35.160Z",
+    "last_login": "2018-12-27T13:08:57.714Z",
     "is_superuser": false,
     "username": "courier",
     "first_name": "\u0412\u0430\u0441\u0438\u043b\u0438\u0439",
@@ -901,7 +901,7 @@
     "contact_phone": "0559454342",
     "contact_name": "\u041a\u0430\u0442\u044f \u0421\u0438\u0434\u043e\u0440\u043e\u0432\u0430",
     "delivery_address": "3-47-25",
-    "status": "on_way",
+    "status": "delivered",
     "operator": [
       "admin"
     ],
@@ -1029,12 +1029,12 @@
     "contact_phone": "0770496789",
     "contact_name": "Maria",
     "delivery_address": "Abdrahmanova, 8",
-    "status": "on_way",
+    "status": "delivered",
     "operator": [
       "operator"
     ],
     "courier": [
-      "admin"
+      "courier"
     ]
   }
 },
@@ -1047,10 +1047,10 @@
     "delivery_address": "\u041f\u0443\u0448\u043a\u0438\u043d\u0430, 241",
     "status": "on_way",
     "operator": [
-      "admin"
+      "operator"
     ],
     "courier": [
-      "courier"
+      "admin"
     ]
   }
 },
@@ -1061,7 +1061,7 @@
     "contact_phone": "0559454342",
     "contact_name": "\u041b\u0435\u0445\u0430",
     "delivery_address": "4-34-45",
-    "status": "new",
+    "status": "preparing",
     "operator": [
       "operator"
     ],
@@ -1075,7 +1075,7 @@
     "contact_phone": "0557894534",
     "contact_name": "Maria",
     "delivery_address": "Abdrahmanova, 24",
-    "status": "delivered",
+    "status": "on_way",
     "operator": [
       "operator"
     ],
@@ -1095,9 +1095,7 @@
     "operator": [
       "operator"
     ],
-    "courier": [
-      "admin"
-    ]
+    "courier": null
   }
 },
 {

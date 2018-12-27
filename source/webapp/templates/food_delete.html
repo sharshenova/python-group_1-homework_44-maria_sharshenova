@@ -5,7 +5,7 @@
 {% block content %}
     <h1>Удалить блюдо</h1>
     <h5>Вы уверены, что хотите удалить блюдо {{ food.name }}</h5>
-    <form action="{% url 'food_delete' food.pk %}" method="post" enctype="multipart/form-data">
+    <form action="{% url 'webapp:food_delete' food.pk %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <button type="submit" class="btn btn-danger">Удалить</button>
     </form>

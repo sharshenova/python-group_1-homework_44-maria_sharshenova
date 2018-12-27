@@ -9,19 +9,19 @@
     <p>Статус доставки: {{ order.get_status_display }}</p>
     <p>Оператор: {{ order.operator }}</p>
     <p>Курьер: {{ order.courier }}</p>
-    <a href="{% url "order_update" order.pk %}">Изменить детали</a><br>
-    <a href="{% url "order_cancel" order.pk %}">Отменить заказ</a>
+    <a href="{% url "webapp:order_update" order.pk %}">Изменить детали</a><br>
+    <a href="{% url "webapp:order_cancel" order.pk %}">Отменить заказ</a>
     <hr>
 
     {% for orderFood in order.foods.all %}
         <p class="d-inline-block">{{ orderFood.food.name }}: {{ orderFood.amount }}</p>
-        <a href="{% url "orderFood_update" orderFood.pk %}"><i class="fa fa-edit"></i></a>
-        <a href="{% url "orderFood_delete" orderFood.pk %}"><i class="fa fa-trash"></i></a><br>
+        <a href="{% url "webapp:orderFood_update" orderFood.pk %}"><i class="fa fa-edit"></i></a>
+        <a href="{% url "webapp:orderFood_delete" orderFood.pk %}"><i class="fa fa-trash"></i></a><br>
 
     {% endfor %}
 
 
-    <a href="{% url "orderFood_create" order.pk %}">Добавить блюдо</a><br>
+    <a href="{% url "webapp:orderFood_create" order.pk %}">Добавить блюдо</a><br>
     <hr>
 
 {% endblock %}

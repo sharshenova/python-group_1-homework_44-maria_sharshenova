@@ -5,7 +5,7 @@
 {% block content %}
     <h1>Удалить блюдо</h1>
     <h5>Вы уверены, что хотите удалить блюдо "{{ orderfoods.food.name }}" из заказа?</h5>
-    <form action="{% url 'orderFood_delete' orderfoods.pk %}" method="post">
+    <form action="{% url 'webapp:orderFood_delete' orderfoods.pk %}" method="post">
         {% csrf_token %}
         <button type="submit" class="btn btn-danger">Удалить</button>
     </form>

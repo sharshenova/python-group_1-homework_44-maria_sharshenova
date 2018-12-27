@@ -4,7 +4,7 @@
 
 {% block content %}
     <h1>Добавьте блюда в заказ</h1>
-    <form action="{% url 'orderFood_create' orderFood_pk %}" method="post" enctype="multipart/form-data">
+    <form action="{% url 'webapp:orderFood_create' orderFood_pk %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="btn btn-primary">Сохранить</button>

@@ -24,8 +24,3 @@ class StatusUpdateForm(forms.ModelForm):
         model = Order
         fields = ['status']
 
-
-# class CancelForm(forms.ModelForm):
-#     class Meta:
-#         model = Order
-#         fields = ['status']

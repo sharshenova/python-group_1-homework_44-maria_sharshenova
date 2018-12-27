@@ -4,7 +4,7 @@
 
 {% block content %}
     <h1>Изменить блюдо в заказе</h1>
-    <form action="{% url 'orderFood_update' orderfoods.pk %}" method="post">
+    <form action="{% url 'webapp:orderFood_update' orderfoods.pk %}" method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="btn btn-primary">Сохранить</button>

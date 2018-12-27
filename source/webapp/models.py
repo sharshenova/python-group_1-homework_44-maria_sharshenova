@@ -42,6 +42,10 @@ class Order(models.Model):
     courier = models.ForeignKey(User, null=True, blank=True, related_name='delivered', verbose_name='Курьер',
                                 on_delete=models.PROTECT)
 
+    class Meta:
+         permissions = [
+             ('can_take_and_deliver_orders', "Может брать и доставлять заказы")
+         ]
 
     def __str__(self):
         return self.delivery_address

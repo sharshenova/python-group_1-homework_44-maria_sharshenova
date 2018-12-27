@@ -6,10 +6,13 @@
     <h1>Список заказов:</h1>
     {% for order in order_list %}
         <h2 class="d-inline-block"><a href="{% url 'webapp:order_detail' order.pk %}">{{ order.contact_name }} {{ order.contact_phone }}, {{ order.delivery_address }}</a></h2>
-        {% if order.status == 'new' or order.status == 'preparing' %}
-            <a href="{% url 'webapp:status_update' order.pk %}">Взять заказ</a><br>
-        {% elif order.status == 'on_way' %}
-            <a href="{% url 'webapp:status_update' order.pk %}">Отметить как доставленный</a><br>
+
+        {% if perms.webapp.can_take_and_deliver_orders %}
+            {% if order.status == 'new' or order.status == 'preparing' %}
+                <a href="{% url 'webapp:status_update' order.pk %}">Взять заказ</a><br>
+            {% elif order.status == 'on_way' %}
+                <a href="{% url 'webapp:status_update' order.pk %}">Отметить как доставленный</a><br>
+            {% endif %}
         {% endif %}
         <hr>
     {% endfor %}

@@ -10,7 +10,7 @@ class FoodForm(forms.ModelForm):
 class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
-        exclude = ['status']
+        exclude = []
 
 
 class OrderFoodForm(forms.ModelForm):

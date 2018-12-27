@@ -147,11 +147,11 @@ class OrderFoodDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteVie
 class StatusUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Order
     form_class = StatusUpdateForm
-    permission_required = 'webapp.change_order'
+    # permission_required = 'can_take_and_deliver_orders'
 
     def get(self, request, pk):
         order = get_object_or_404(Order, pk=pk)
-        if order.status in ('new', 'preparing'):
+        if order.status == 'preparing':
             order.status = 'on_way'
         elif order.status == 'on_way':
             order.status = 'delivered'

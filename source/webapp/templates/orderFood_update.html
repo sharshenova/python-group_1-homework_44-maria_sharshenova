@@ -3,10 +3,15 @@
 {% block title %}Изменить блюдо{% endblock %}
 
 {% block content %}
-    <h1>Изменить блюдо в заказе</h1>
-    <form action="{% url 'webapp:orderFood_update' orderfoods.pk %}" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Сохранить</button>
-    </form>
+    {% if orderfoods.order.can_be_changed %}
+        <h1>Изменить блюдо в заказе</h1>
+        <form action="{% url 'webapp:orderFood_update' orderfoods.pk %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+        </form>
+    {% else %}
+        <h3>Невозможно изменить блюдо</h3>
+        <a href="{% url "webapp:order_list" %}">Перейти к заказам</a>
+    {% endif %}
 {% endblock %}

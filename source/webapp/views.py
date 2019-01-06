@@ -3,8 +3,9 @@ from webapp.models import Food, Order, OrderFoods
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from webapp.forms import FoodForm, OrderUpdateForm, OrderCreateForm, OrderFoodForm, StatusUpdateForm
 from django.urls import reverse, reverse_lazy
-from django.shortcuts import redirect, get_object_or_404
+from django.shortcuts import redirect, get_object_or_404, render_to_response
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.http import HttpResponseRedirect
 
 
 # Create your views here.
@@ -81,13 +82,14 @@ class OrderFoodCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateVie
     form_class = OrderFoodForm
     permission_required = 'webapp.add_orderfoods'
 
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['orderFood_pk'] = self.kwargs.get('pk')
+        # context['order_pk'] = self.kwargs.get('pk')
+        context['order'] = Order.objects.get(pk=self.kwargs.get('pk'))
         return context
 
     def form_valid(self, form):
+        # осуществляет редирект на URL, хранязийся в атрибуте success_url
         form.instance.order = Order.objects.get(pk=self.kwargs.get('pk'))
         return super().form_valid(form)
 
@@ -121,18 +123,12 @@ class OrderCancelView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     form_class = StatusUpdateForm
     permission_required = 'webapp.change_order'
 
-    def get(self, request, pk):
+    def post(self, request, pk):
         order = get_object_or_404(Order, pk=pk)
-        if order.status in ('new', 'preparing'):
+        if order.can_be_canceled:
             order.status = 'canceled'
-        else:
-            print("Заказ нельзя отменить")
         order.save()
-        return redirect('webapp:order_list')
-
-
-    def get_success_url(self):
-        return reverse('webapp:order_detail', kwargs={'pk': self.object.pk})
+        return redirect('webapp:order_detail', pk)
 
 
 class OrderFoodDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):

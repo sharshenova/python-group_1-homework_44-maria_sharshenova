@@ -4,14 +4,14 @@
 
 {% block content %}
     <h1>Изменить заказ</h1>
-    {% if order.status == 'delivered' or order.status == 'on_way' %}
-        <h3>Невозможно изменить заказ, он уже доставляется или доставлен</h3>
-        <a href="{% url "webapp:order_list" %}">Перейти к заказам</a>
+    {% if order.can_be_changed or order.is_canceled %}
+        <form action="{% url 'webapp:order_update' order.pk %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+        </form>
     {% else %}
-    <form action="{% url 'webapp:order_update' order.pk %}" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Сохранить</button>
-    </form>
+        <h3>Невозможно изменить заказ</h3>
+        <a href="{% url "webapp:order_list" %}">Перейти к заказам</a>
     {% endif %}
 {% endblock %}

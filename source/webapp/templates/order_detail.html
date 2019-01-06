@@ -9,19 +9,28 @@
     <p>Статус доставки: {{ order.get_status_display }}</p>
     <p>Оператор: {{ order.operator }}</p>
     <p>Курьер: {{ order.courier }}</p>
-    <a href="{% url "webapp:order_update" order.pk %}">Изменить детали</a><br>
-    <a href="{% url "webapp:order_cancel" order.pk %}">Отменить заказ</a>
+    {% if perms.webapp.change_order and order.can_be_changed %}
+        <a href="{% url "webapp:order_update" order.pk %}">Изменить детали</a><br>
+    {% endif %}
+    {% if perms.webapp.change_order and order.can_be_canceled %}
+        <a href="{% url "webapp:order_cancel" order.pk %}">Отменить заказ</a>
+    {% endif %}
+    {% if perms.webapp.change_order and order.is_canceled %}
+        <a href="{% url "webapp:order_update" order.pk %}">Восстановить заказ</a>
+    {% endif %}
     <hr>
-
     {% for orderFood in order.foods.all %}
         <p class="d-inline-block">{{ orderFood.food.name }}: {{ orderFood.amount }}</p>
-        <a href="{% url "webapp:orderFood_update" orderFood.pk %}"><i class="fa fa-edit"></i></a>
-        <a href="{% url "webapp:orderFood_delete" orderFood.pk %}"><i class="fa fa-trash"></i></a><br>
-
+        <br>
+        {% if perms.webapp.change_orderfoods and order.can_be_changed %}
+            <a href="{% url "webapp:orderFood_update" orderFood.pk %}"><i class="fa fa-edit"></i></a>
+            <a href="{% url "webapp:orderFood_delete" orderFood.pk %}"><i class="fa fa-trash"></i></a><br>
+        {% endif %}
     {% endfor %}
 
-
-    <a href="{% url "webapp:orderFood_create" order.pk %}">Добавить блюдо</a><br>
+    {% if perms.webapp.add_orderfoods and order.can_be_changed %}
+        <a href="{% url "webapp:orderFood_create" order.pk %}">Добавить блюдо</a><br>
+    {% endif %}
     <hr>
 
 {% endblock %}

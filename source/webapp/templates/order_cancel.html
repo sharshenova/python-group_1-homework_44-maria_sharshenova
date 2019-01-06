@@ -3,7 +3,15 @@
 {% block title %}Отменить заказ{% endblock %}
 
 {% block content %}
-    <h1>Отменить заказ</h1>
-    <h5>Вы уверены, что хотите отменить заказ {{ order.id }}</h5>
-    <a href="{% url 'webapp:order_cancel' order.pk %}">Да</a><br>
+    {% if order.can_be_canceled %}
+        <h1>Отменить заказ</h1>
+        <h5>Вы уверены, что хотите отменить заказ {{ order.id }}?</h5>
+        <form action="{% url 'webapp:order_cancel' order.pk %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">Да</button>
+        </form>
+    {% else %}
+        <h3>Невозможно изменить заказ</h3>
+        <a href="{% url "webapp:order_list" %}">Перейти к заказам</a>
+    {% endif %}
 {% endblock %}

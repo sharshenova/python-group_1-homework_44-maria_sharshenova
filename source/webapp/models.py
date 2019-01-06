@@ -50,6 +50,14 @@ class Order(models.Model):
     def __str__(self):
         return self.delivery_address
 
+    def can_be_changed(self):
+        return self.status in ('new', 'preparing')
+
+    def can_be_canceled(self):
+        return self.status != 'canceled'
+
+    def is_canceled(self):
+        return self.status == 'canceled'
 
 
 class OrderFoods(models.Model):

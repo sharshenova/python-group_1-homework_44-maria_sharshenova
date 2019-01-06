@@ -3,10 +3,15 @@
 {% block title %}Удалить блюдо{% endblock %}
 
 {% block content %}
-    <h1>Удалить блюдо</h1>
-    <h5>Вы уверены, что хотите удалить блюдо "{{ orderfoods.food.name }}" из заказа?</h5>
-    <form action="{% url 'webapp:orderFood_delete' orderfoods.pk %}" method="post">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-danger">Удалить</button>
-    </form>
+    {% if orderfoods.order.can_be_changed %}
+        <h1>Удалить блюдо</h1>
+        <h5>Вы уверены, что хотите удалить блюдо "{{ orderfoods.food.name }}" из заказа?</h5>
+        <form action="{% url 'webapp:orderFood_delete' orderfoods.pk %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Удалить</button>
+        </form>
+    {% else %}
+        <h3>Невозможно удалить блюдо</h3>
+        <a href="{% url "webapp:order_list" %}">Перейти к заказам</a>
+    {% endif %}
 {% endblock %}

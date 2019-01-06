@@ -3,9 +3,8 @@ from webapp.models import Food, Order, OrderFoods
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from webapp.forms import FoodForm, OrderUpdateForm, OrderCreateForm, OrderFoodForm, StatusUpdateForm
 from django.urls import reverse, reverse_lazy
-from django.shortcuts import redirect, get_object_or_404, render_to_response
+from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.http import HttpResponseRedirect
 
 
 # Create your views here.
@@ -84,12 +83,11 @@ class OrderFoodCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateVie
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # context['order_pk'] = self.kwargs.get('pk')
         context['order'] = Order.objects.get(pk=self.kwargs.get('pk'))
         return context
 
     def form_valid(self, form):
-        # осуществляет редирект на URL, хранязийся в атрибуте success_url
+        # осуществляет редирект на URL, хранящийся в атрибуте success_url
         form.instance.order = Order.objects.get(pk=self.kwargs.get('pk'))
         return super().form_valid(form)
 

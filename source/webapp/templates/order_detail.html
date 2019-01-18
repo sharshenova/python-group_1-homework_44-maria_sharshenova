@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}Заказ{% endblock %}
-
+{% load staticfiles %}
 {% block content %}
     <h2>Заказ {{ order.id }}</h2>
     <p>Имя клиента: {{ order.contact_name }}</p>
@@ -19,18 +19,50 @@
         <a href="{% url "webapp:order_update" order.pk %}">Восстановить заказ</a>
     {% endif %}
     <hr>
-    {% for orderFood in order.foods.all %}
-        <p class="d-inline-block">{{ orderFood.food.name }}: {{ orderFood.amount }}</p>
-        <br>
-        {% if perms.webapp.change_orderfoods and order.can_be_changed %}
-            <a href="{% url "webapp:orderFood_update" orderFood.pk %}"><i class="fa fa-edit"></i></a>
-            <a href="{% url "webapp:orderFood_delete" orderFood.pk %}"><i class="fa fa-trash"></i></a><br>
-        {% endif %}
-    {% endfor %}
+    <ul id="order_food_list">
+        {% for orderFood in order.foods.all %}
+            <li id="orderFood_{{ orderFood.pk }}" class="d-inline-block"><span class="food_name" data-food_pk="{{ orderFood.food.pk }}">{{ orderFood.food.name }}</span>: <span class="food_amount">{{ orderFood.amount }}</span></li>
+            {% if perms.webapp.change_orderfoods and order.can_be_changed %}
+                <a href="{% url 'webapp:order_food_update' orderFood.pk %}" data-pk="{{ orderFood.pk }}" class="update_link"><i class="fa fa-edit"></i></a><br>
+{#                <a href="#" data-form_action="{% url 'webapp:order_food_delete' orderFood.pk %}"><i class="fa fa-trash"></i></a><br>#}
+            {% endif %}
+        {% endfor %}
+    </ul>
 
     {% if perms.webapp.add_orderfoods and order.can_be_changed %}
-        <a href="{% url "webapp:orderFood_create" order.pk %}">Добавить блюдо</a><br>
+        <a href="{% url 'webapp:order_food_create' order.pk %}" class="add_link" data-toggle="modal" data-target="#food_edit_modal"
+>Добавить блюдо</a><br>
     {% endif %}
     <hr>
 
+
+    <div class="modal" tabindex="-1" role="dialog" id="food_edit_modal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Добавить блюда</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <form id="food_form" method="POST">
+                  {% csrf_token %}
+                  {{ form.as_p }}
+              </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="food_submit">Добавить</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
 {% endblock %}
+
+{% block scripts %}
+    <script type="application/javascript" src="{% static 'js/main.js' %}"></script>
+{% endblock %}
+

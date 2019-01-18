@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
 from webapp.models import Food, Order, OrderFoods
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
 from webapp.forms import FoodForm, OrderUpdateForm, OrderCreateForm, OrderFoodForm, StatusUpdateForm
 from django.urls import reverse, reverse_lazy
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.http import JsonResponse
 
 
 # Create your views here.
@@ -54,10 +55,13 @@ class OrderListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     permission_required = 'webapp.view_order'
 
 
-class OrderDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
+class OrderDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView, FormView):
     model = Order
     template_name = 'order_detail.html'
     permission_required = 'webapp.view_order'
+    form_class = OrderFoodForm
+
+
 
 
 class OrderCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
@@ -152,6 +156,74 @@ class StatusUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
             order.status = 'delivered'
         order.save()
         return redirect('webapp:order_list')
+
+
+
+
+
+class OrderFoodAjaxCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+    model = OrderFoods
+    form_class = OrderFoodForm
+    permission_required = 'webapp.add_orderfoods'
+
+    # обработка формы без ошибок
+    def form_valid(self, form):
+        order = get_object_or_404(Order, pk=self.kwargs.get('pk'))
+        form.instance.order = order
+        order_food = form.save()
+        return JsonResponse({
+            'food_name': order_food.food.name,
+            'amount': order_food.amount,
+            'order_pk': order_food.order.pk,
+            'pk': order_food.pk
+        })
+
+    # обработка формы с ошибками
+    # статус 422 - UnprocessableEntity, применяется,
+    # когда запрос имеет корректный формат,
+    # но неподходящие по смыслу данные (например, пустые).
+
+    def form_invalid(self, form):
+            return JsonResponse({
+                'errors': form.errors
+            }, status='422')
+
+
+
+class OrderFoodAjaxUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+    model = OrderFoods
+    form_class = OrderFoodForm
+    permission_required = 'webapp.change_orderfoods'
+
+    # обработка формы без ошибок
+    def form_valid(self, form):
+        orderfood = get_object_or_404(OrderFoods, pk=self.kwargs.get('pk'))
+        form.instance.pk = orderfood.pk
+        order_food = form.save()
+        return JsonResponse({
+            'food_name': order_food.food.name,
+            'amount': order_food.amount,
+            'order_pk': order_food.order.pk,
+            'pk': order_food.pk
+        })
+
+    # обработка формы с ошибками
+    # статус 422 - UnprocessableEntity, применяется,
+    # когда запрос имеет корректный формат,
+    # но неподходящие по смыслу данные (например, пустые).
+
+    def form_invalid(self, form):
+            return JsonResponse({
+                'errors': form.errors
+            }, status='422')
+
+
+
+class OrderFoodAjaxDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
+    model = OrderFoods
+    permission_required = 'webapp.delete_orderfoods'
+
+
 
 
 

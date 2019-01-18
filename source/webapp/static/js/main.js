@@ -1,24 +1,42 @@
-function clearForm() {
-    // очищаем форму в модалке
-    $('#id_food').val('');
-    $('#id_amount').val('');
+function addOrderFood(orderFood) {
+    let html = "<li id=\"orderFood_" + orderFood.pk + "\">" +
+        "<span class=\"food_name\">" + orderFood.food_name + "</span>: " +
+        "<span class=\"food_amount\">" + orderFood.amount + "</span>\n" +
+        "<a href=\"/order_food/" + orderFood.pk + "/update\" class=\"edit_food\" data-food_pk=\"" + orderFood.food_pk + "\" data-food_amount=\"" + orderFood.amount + "\"><i class=\"fa fa-edit\"></i></a>\n" +
+        "<a href=\"/order_food/" + orderFood.pk + "/delete\" class=\"delete_food\"><i class=\"fa fa-trash\"></i></a>\n" +
+        "</li>";
+
+    $('#order_food_list').append(html);
+
+    orderFoodUpdateSetup($('#orderFood_' + orderFood.pk + ' .edit_food'));
 }
 
-function orderFoodBaseSetup() {
-    // назначаем действие на нажатие кнопки "Добавить" в модалке.
-    $('#food_submit').on('click', function(e) {
-        // отправляем форму
-        $('#food_form').submit();
-    });
+function updateOrderFood(existingOrderFood, orderFood) {
+    $('.food_name', existingOrderFood).text(orderFood.food_name);
+    $('.food_amount', existingOrderFood).text(orderFood.amount);
+    $('.edit_food', existingOrderFood).data('food_pk', orderFood.food_pk);
+    $('.edit_food', existingOrderFood).data('food_amount', orderFood.amount);
 }
 
-function sendFormData(url, success, error) {
-    // собираем данные, указанные в форме food_form
+function addOrUpdateFood(orderFood) {
+    let existingOrderFood = $('#orderFood_' + orderFood.pk);
+
+    if (existingOrderFood.length > 0) {
+        updateOrderFood(existingOrderFood, orderFood)
+    } else {
+        addOrderFood(orderFood)
+    }
+}
+
+function formSend(form) {
     let data = {
         food: $('#id_food').val(),
         amount: $('#id_amount').val(),
-        csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val()
+        csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]', form).val()
     };
+
+    let url = form.attr('action');
+
     // отправляем данные
     // опции success и error должны быть функциями,
     // которые jQuery вызовет при успешной и неуспешной отправке запроса, соответственно
@@ -27,175 +45,82 @@ function sendFormData(url, success, error) {
         url: url,
         method: 'POST',
         data: data,
-        success: success,
-        error: error
+        success: function(response, status) {
+            $('#food_modal').modal('hide');
+            addOrUpdateFood(response);
+        },
+        error: function() {
+            alert("Неправильно введены данные");
+        },
+        complete: function(xhr, status) {
+            // выводим содержимое ответа и статус в консоль.
+            console.log(xhr.responseJSON);
+            console.log(status);
+        }
     });
 }
 
 
-function orderFoodCreateSetup() {
-    // функция, которая обрабатывает успешный AJAX-запрос
-    function addOrderFoodSuccess(response, status) {
-        // выводим содержимое ответа и статус в консоль.
-        console.log(response);
-        console.log(status);
-
-
-        // создаём новый пункт списка блюд
-        let newFoodLi = document.createElement('li');
-        // заполняем новый пункт списка блюд разметкой - текстом и ссылками
-        // т.к. ответ - это JSON-объект,
-        // то с ним можно работать, как с объектом JS,
-        // и обращаться к его свойствам через точку.
-        // используем форматированную строку,
-        // которая обозначается апострофами (``)
-        // и позволяет подставлять в неё переменные через ${}.
-        $(newFoodLi).html(
-            `${response.food_name}: ${response.amount}шт. (<a href="#">Изменить</a>/<a href="#">Удалить</a>)`
-        );
-
-        // добавляем новый пункт в список
-        $('#order_food_list').append(newFoodLi);
-        // выключаем модальное окно (toggle меняет состояние с выключенного на включенное и наоборот)
-        $('#food_edit_modal').modal('toggle');
-
-        clearForm()
-    }
-
-
-    // функция, которая обрабатывает неуспешный AJAX-запрос
-    function submitOrderFoodError(response, status) {
-        // выводим содержимое ответа и статус в консоль.
-        console.log(response);
-        console.log(status);
-    }
-
-    // функция, которая отправляет AJAX-запрос с формой
-    // по клику на кнопку "Добавить"
-    function addOrderFood() {
-        // определяем url для отправки формы food_form по свойству action:
-        let url = $('.add_link').attr('href');
-
-        // отправляем данные на URL через Ajax
-        sendFormData(url, addOrderFoodSuccess, submitOrderFoodError)
-    }
-
-
-
-    // назначаем действие на отправку формы food_form.
-    $('#food_form').on('submit', function(event) {
-        // отменить обычную отправку формы (действие по умолчанию с перезагрузкой страницы)
+function modalSetup() {
+    // назначаем действие на нажатие кнопки "Добавить" в модалке
+    $('#food_submit').on('click', function(event) {
         event.preventDefault();
-        // отправить форму с помощью функции addOrderFood, которая использует AJAX-запрос.
-        addOrderFood();
+
+        // отправляем форму
+        $('#food_form').submit();
     });
+
+    $('#food_form').on('submit', function (event) {
+        event.preventDefault();
+
+        formSend($(this))
+    })
 }
 
+function modalShow(options) {
+    $('#food_modal .modal-title').text(options.title);
+    $('#food_submit').text(options.button);
+    $('#id_food').val(options.foodPk);
+    $('#id_amount').val(options.foodAmount);
+    $('#food_form').attr('action', options.url);
 
+    $('#food_modal').modal('show');
+}
 
-function orderFoodUpdateSetup() {
-
-    // функция, которая обрабатывает успешный AJAX-запрос
-    function updateOrderFoodSuccess(response, status) {
-        // выводим содержимое ответа и статус в консоль.
-        console.log(response);
-        console.log(status);
-
-
-        // // заполняем новый пункт списка блюд разметкой - текстом и ссылками
-        // // т.к. ответ - это JSON-объект,
-        // // то с ним можно работать, как с объектом JS,
-        // // и обращаться к его свойствам через точку.
-        // // используем форматированную строку,
-        // // которая обозначается апострофами (``)
-        // // и позволяет подставлять в неё переменные через ${}.
-        $("#orderFood_" + response.pk).html(
-            `${response.food_name}: ${response.amount} шт. (<a href="#">Изменить</a>/<a href="#">Удалить</a>)`
-        );
-
-        // выключаем модальное окно (toggle меняет состояние с выключенного на включенное и наоборот)
-        $('#food_edit_modal').modal('toggle');
-
-    }
-
-    // функция, которая обрабатывает неуспешный AJAX-запрос
-    function submitOrderFoodError(response, status) {
-        // выводим содержимое ответа и статус в консоль.
-        console.log(response);
-        console.log(status);
-    }
-
-    // функция, которая отправляет AJAX-запрос с формой
-    // по клику на кнопку "Добавить"
-    function updateOrderFood(url) {
-
-        //
-        // // определяем url для отправки формы food_form по свойству action:
-        // let url = $('.update_link').attr('href');
-        //
-        // let orderFoodPK = $('.update_link').data('pk');
-        //
-        //
-        // // собираем данные, указанные в форме food_form
-        // let data = {
-        //     food: $('#id_food').val(),
-        //     amount: $('#id_amount').val(),
-        //     csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val()
-        // };
-        // // отправляем данные
-        // // опции success и error должны быть функциями,
-        // // которые jQuery вызовет при успешной и неуспешной отправке запроса, соответственно
-        // // (т.н. "колбэки" - "callback" - функции обратной связи).
-        // $.ajax({
-        //     url: url,
-        //     method: 'POST',
-        //     data: data,
-        //     pk: orderFoodPK,
-        //     success: updateOrderFoodSuccess,
-        //     error: submitOrderFoodError
-        // });
-        // отправляем данные на URL через Ajax
-        sendFormData(url, updateOrderFoodSuccess, submitOrderFoodError)
-    }
-
-
-    $('#order_food_list .update_link').on('click', function(event) {
+function orderFoodCreateSetup(link) {
+    link.on('click', function(event) {
         event.preventDefault();
 
-        $('#food_edit_modal').modal('toggle');
-
-        let url = $(this).attr('href')
-
-        // // передаем в качестве action ссылку из атрибута href {% url 'webapp:order_food_update' orderFood.pk %}
-        let foodForm = $('#food_form');
-        // foodForm.attr('action', $(this).attr('href')); // this - указывает на текущий элемент, к которому применено событие: кнопку, ссылку и тд
-        //
-
-
-        // получаем название блюда и количество
-        let foodPk = $(this).data('pk');
-        let foodName = $('#orderFood_' + foodPk + ' .food_name').data('food_pk'); // '#order_food_1 .food_name'
-        let foodAmount = $('#orderFood_' + foodPk + ' .food_amount').text(); // '#order_food_1 .food_amount'
-
-        // передаем название блюда и количество в модалку
-        $('#id_food').val(foodName);
-        $('#id_amount').val(foodAmount);
-
-        // отключаем событие Submit у формы
-        foodForm.off('submit');
-
-        // назначаем действие на отправку формы food_form.
-        foodForm.on('submit', function(event) {
-            // отменить обычную отправку формы (действие по умолчанию с перезагрузкой страницы)
-            event.preventDefault();
-            // отправить форму с помощью функции updateOrderFood, которая использует AJAX-запрос.
-            updateOrderFood(url);
+        modalShow({
+            title: 'Добавить блюдо',
+            button: 'Добавить',
+            foodPk: '',
+            foodAmount: '',
+            url: $(this).prop('href')
         });
     })
 }
 
+function orderFoodUpdateSetup(link) {
+    link.on('click', function(event) {
+        event.preventDefault();
+
+        data = $(this).data();
+
+        modalShow({
+            title: 'Изменить блюдо',
+            button: 'Изменить',
+            foodPk: data.food_pk,
+            foodAmount: data.food_amount,
+            url: $(this).prop('href')
+        });
+
+    })
+}
+
+
 window.onload = function() {
-    orderFoodBaseSetup();
-    orderFoodCreateSetup();
-    orderFoodUpdateSetup();
+    modalSetup();
+    orderFoodCreateSetup($('.add_food'));
+    orderFoodUpdateSetup($('.edit_food'));
 };

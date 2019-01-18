@@ -173,6 +173,7 @@ class OrderFoodAjaxCreateView(LoginRequiredMixin, PermissionRequiredMixin, Creat
         order_food = form.save()
         return JsonResponse({
             'food_name': order_food.food.name,
+            'food_pk': order_food.food.pk,
             'amount': order_food.amount,
             'order_pk': order_food.order.pk,
             'pk': order_food.pk
@@ -202,6 +203,7 @@ class OrderFoodAjaxUpdateView(LoginRequiredMixin, PermissionRequiredMixin, Updat
         order_food = form.save()
         return JsonResponse({
             'food_name': order_food.food.name,
+            'food_pk': order_food.food.pk,
             'amount': order_food.amount,
             'order_pk': order_food.order.pk,
             'pk': order_food.pk

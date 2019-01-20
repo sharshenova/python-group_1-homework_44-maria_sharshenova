@@ -24,7 +24,7 @@
             <li id="orderFood_{{ orderFood.pk }}"><span class="food_name">{{ orderFood.food.name }}</span>: <span class="food_amount">{{ orderFood.amount }}</span>
             {% if perms.webapp.change_orderfoods and order.can_be_changed %}
                 <a href="{% url 'webapp:order_food_update' orderFood.pk %}" class="edit_food" data-food_pk="{{ orderFood.food.pk }}" data-food_amount="{{ orderFood.amount }}"><i class="fa fa-edit"></i></a>
-{#                <a href="{% url 'webapp:order_food_delete' orderFood.pk %}" class="delete_food"><i class="fa fa-trash"></i></a>#}
+                <a href="{% url 'webapp:order_food_delete' orderFood.pk %}" class="delete_food"><i class="fa fa-trash"></i></a>
             {% endif %}
             </li>
         {% endfor %}

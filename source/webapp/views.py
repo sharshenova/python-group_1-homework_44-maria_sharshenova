@@ -225,6 +225,11 @@ class OrderFoodAjaxDeleteView(LoginRequiredMixin, PermissionRequiredMixin, Delet
     model = OrderFoods
     permission_required = 'webapp.delete_orderfoods'
 
+    def get_success_url(self):
+        return reverse('webapp:order_detail', kwargs={'pk': self.object.order.pk})
+
+
+
 
 
 
